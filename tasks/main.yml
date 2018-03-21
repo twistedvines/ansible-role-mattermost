@@ -1,0 +1,3 @@
+---
+# tasks file for twistedvines.mattermost
+  - include_tasks: ubuntu.yml

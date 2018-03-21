@@ -1,0 +1,7 @@
+galaxy_info:
+  author: Harry Owen
+  description: tinkerer extraordinaire
+  license: undecided
+  min_ansible_version: 1.2
+  galaxy_tags: ['mattermost']
+dependencies: []

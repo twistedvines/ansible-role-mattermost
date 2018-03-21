@@ -1,0 +1,48 @@
+{
+  "variables": {
+    "ansible_host": "default",
+    "ansible_connection": "docker",
+    "distribution": "ubuntu:16.04"
+  },
+
+  "builders": [
+    {
+      "type": "docker",
+      "image": "{{user `distribution`}}",
+      "commit": "true",
+      "run_command": [
+        "-d",
+        "-i",
+        "-t",
+        "--name",
+        "{{user `ansible_host`}}",
+        "{{.Image}}",
+        "/bin/bash"
+      ]
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "inline": ["apt update && apt install -yy python"]
+    },
+    {
+      "type": "ansible",
+      "user": "root",
+      "playbook_file": "{{user `playbook_file`}}",
+      "extra_arguments": [
+        "--extra-vars",
+        "ansible_host={{user `ansible_host`}} ansible_connection={{user `ansible_connection`}}"
+      ]
+    }
+  ],
+  "post-processors": [
+    [
+      {
+        "type": "docker-tag",
+        "repository": "ansible-twistedvines-mattermost",
+        "tag": "{{user `environment`}}"
+      }
+    ]
+  ]
+}

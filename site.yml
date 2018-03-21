@@ -1,0 +1,6 @@
+# Do not
+
+---
+- hosts: all
+  roles:
+    - role: ../
