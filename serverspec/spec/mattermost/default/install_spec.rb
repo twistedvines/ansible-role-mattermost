@@ -4,14 +4,12 @@ require 'serverspec'
 require 'spec_helper'
 
 describe "Packer Docker build" do
-  let(:image_name) { 'ansible-twistedvines-mattermost:test' }
+  let!(:image) { Util.build_docker_image }
 
   before do
     set :os, family: :debian
     set :backend, :docker
-    set :docker_image, image_name
-
-    Util.build_docker_image
+    set :docker_image, image.id
   end
 
   it 'Ensures the system is up to date' do

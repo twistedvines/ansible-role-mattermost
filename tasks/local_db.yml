@@ -1,0 +1,5 @@
+---
+  - include_vars:
+      dir: 'vars/local_db'
+  - import_role:
+      name: 'ANXS.postgresql'

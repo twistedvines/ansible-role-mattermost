@@ -1,3 +1,6 @@
 ---
 # tasks file for twistedvines.mattermost
-  - include_tasks: ubuntu.yml
+  - import_tasks: ubuntu.yml
+  - name: 'Create local database'
+    import_tasks: local_db.yml
+    when: local_database == true
