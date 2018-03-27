@@ -1,3 +1,10 @@
 ---
 # defaults file for twistedvines.mattermost
-local_database: false
+local_database: true
+mattermost_version: '4.3.0'
+mattermost_db_driver: 'postgres'
+mattermost_db_user: 'mattermost'
+mattermost_db_password: 'password'
+mattermost_db_host: 'localhost'
+mattermost_db_port: '5432'
+mattermost_db_name: 'mattermost'

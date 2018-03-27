@@ -6,10 +6,11 @@ task :default => :spec
 
 namespace :spec do
   targets = []
-  Dir.glob('./spec/mattermost/*').each do |dir|
+  Dir.glob('./spec/*').each do |dir|
     next unless File.directory?(dir)
     target = File.basename(dir)
-    targets << "mattermost/#{target}"
+    target = "_#{target}" if target == "default"
+    targets << target
   end
 
   task :all     => targets

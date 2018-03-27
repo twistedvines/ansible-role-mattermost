@@ -1,0 +1,34 @@
+---
+- name: 'Download & extract Mattermost from archive'
+  unarchive:
+    src: 'https://releases.mattermost.com/{{ mattermost_version }}/mattermost-{{ mattermost_version }}-linux-amd64.tar.gz'
+    dest: '/opt'
+    remote_src: yes
+- name: 'Create Mattermost storage directory'
+  file:
+    path: '/opt/mattermost/data'
+    state: directory
+- name: 'Create Mattermost group'
+  group:
+    name: mattermost
+    state: present
+- name: 'Create Mattermost user'
+  user:
+    name: mattermost
+    group: mattermost
+    system: yes
+- name: 'Assign ownership of Mattermost installation to user'
+  file:
+    path: '/opt/mattermost'
+    owner: 'mattermost'
+    group: 'mattermost'
+    recurse: yes
+    state: directory
+    mode: '0775'
+- name: 'Inject Mattermost configuration'
+  template:
+    src: 'config.json.j2'
+    dest: '/opt/mattermost/config/config.json'
+    owner: 'mattermost'
+    group: 'mattermost'
+    mode: '0644'

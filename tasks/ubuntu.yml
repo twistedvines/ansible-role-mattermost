@@ -3,3 +3,7 @@
   apt:
     upgrade: yes
     update_cache: yes
+- name: Install ca-certificates
+  apt:
+    name: ca-certificates
+    state: latest
