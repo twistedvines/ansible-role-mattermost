@@ -8,3 +8,5 @@
     import_tasks: install_mattermost.yml
   - debug:
       msg: "local_database: {{ local_database }}"
+  - name: 'Configure Mattermost Service'
+    import_tasks: configure_service.yml

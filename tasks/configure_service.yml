@@ -1,0 +1,15 @@
+---
+- name: Insert systemd service file
+  template:
+    src: 'mattermost.service.j2'
+    dest: '/lib/systemd/system/mattermost.service'
+    owner: 'root'
+  notify: daemon-reload
+- name: Enable the Mattermost service
+  systemd:
+    name: mattermost
+    enabled: yes
+- name: Start the Mattermost service
+  systemd:
+    name: mattermost
+    state: started

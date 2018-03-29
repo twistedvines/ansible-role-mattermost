@@ -1,2 +1,5 @@
 ---
 # handlers file for twistedvines.mattermost
+- name: daemon-reload
+  systemd:
+    daemon_reload: yes
