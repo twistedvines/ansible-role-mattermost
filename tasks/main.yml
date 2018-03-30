@@ -1,12 +1,7 @@
 ---
 # tasks file for twistedvines.mattermost
   - import_tasks: ubuntu.yml
-  - name: 'Create local database'
-    import_tasks: local_db.yml
-    when: local_database == true
   - name: 'Install Mattermost'
     import_tasks: install_mattermost.yml
-  - debug:
-      msg: "local_database: {{ local_database }}"
   - name: 'Configure Mattermost Service'
     import_tasks: configure_service.yml

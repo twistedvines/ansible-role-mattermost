@@ -1,6 +1,5 @@
 ---
 # defaults file for twistedvines.mattermost
-local_database: true
 mattermost_version: '4.3.0'
 mattermost_db_driver: 'postgres'
 mattermost_db_user: 'mattermost'

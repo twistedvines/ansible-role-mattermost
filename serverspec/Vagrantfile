@@ -6,19 +6,8 @@ Vagrant.configure("2") do |config|
 
   config.vm.define 'default' do |default|
     config.vm.provision :shell, inline: 'sudo apt update && sudo apt install -yy python'
-
     config.vm.provision :ansible do |ansible|
       configure_ansible ansible
-    end
-  end
-
-  config.vm.define 'local_database' do |local_database|
-    config.vm.provision :shell, inline: 'sudo apt update && sudo apt install -yy python'
-
-    config.vm.provision :ansible do |ansible|
-      configure_ansible(ansible) do |ansible|
-        ansible.extra_vars = { local_database: false }
-      end
     end
   end
 end
@@ -29,6 +18,6 @@ end
 
 def configure_ansible(ansible_handle)
   ansible_handle.limit = 'all'
-  ansible_handle.playbook = "#{project_dir}/site.yml"
+  ansible_handle.playbook = "#{project_dir}/tests/test.yml"
   yield ansible_handle if block_given?
 end
