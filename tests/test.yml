@@ -4,17 +4,4 @@
 - hosts: all
   become: yes
   roles:
-    - role: ANXS.postgresql
     - role: ansible-role-mattermost
-  vars:
-    postgresql_version: 9.6
-    postgresql_encoding: 'UTF-8'
-    postgres_adm_user: 'postgres'
-    postgresql_users:
-      - name: '{{ mattermost_db_user }}'
-        password: '{{ mattermost_db_password }}'
-        encrypted: true
-    postgresql_databases:
-      - name: '{{ mattermost_db_name }}'
-        owner: '{{ mattermost_db_user }}'
-    postgresql_ssl: on
